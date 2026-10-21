@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5f3">
+  <title>CareCircle | A little more in sync</title>
+  <meta name="description" content="A shared family care circle to coordinate daily care tasks, medications, medical records, and wellbeing check-ins together.">
+  <meta property="og:title" content="CareCircle | A little more in sync">
+  <meta property="og:description" content="A shared family care circle to coordinate daily care tasks, medications, medical records, and wellbeing check-ins together.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/app.css">
+</head>
+<body class="auth-pending">
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-checklist" viewBox="0 0 24 24"><path d="m9 11 2 2 4-4M9 5h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/><path d="M9 12h11"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a5.7 5.7 0 0 0-8-8l-10 10a5.7 5.7 0 0 0 8 8Z"/><path d="m8.5 8.5 7 7"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.9L7.1 10.3a16 16 0 0 0 6 6l1.9-1.9a2 2 0 0 1 1.9-.6l2.8.5a2 2 0 0 1 1.7 2.6Z"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 2.1 18a2 2 0 0 0 1.7 3h16.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0ZM12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3ZM19 14l1.2 2.8L23 18l-2.8 1.2L19 22l-1.2-2.8L15 18l2.8-1.2L19 14Z"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.6.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.6-.9l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-1.9l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.6-.9l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.6.9l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.9Z" transform="translate(-1 -1)"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-shield-star" viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><polygon points="12 8 13.5 11 16.5 11.5 14.2 13.5 14.8 16.5 12 15 9.2 16.5 9.8 13.5 7.5 11.5 10.5 11 12 8"/></symbol>
+    <!-- Exact fire icon with mathematically perfect circular bottom arc widened by 20% -->
+    <symbol id="i-streak" viewBox="0 0 100 115">
+      <path
+        d="M 12 44.5
+           C 15 32, 19 22, 24 16
+           C 25.5 14, 28 14, 29.5 16.5
+           C 32.5 22, 36 29, 39 34
+           C 41 36.5, 43.5 33.5, 46 27
+           C 50 19, 54 10, 58 6
+           C 59.5 4.5, 62 4.5, 63.5 7
+           C 70 16, 81 32, 90.5 51
+           A 42 42 0 1 1 12 44.5 Z"
+        fill="#f08000"
+        stroke="#ffffff"
+        stroke-width="7"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+      <path
+        d="M 50 44
+           C 50 52, 34 62, 34 71
+           C 34 78, 41 82, 50 82
+           C 59 82, 66 78, 66 71
+           C 66 62, 50 52, 50 44 Z"
+        fill="#ffc700"
+      />
+    </symbol>
+  </svg>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="#view-today" data-view-link="today" aria-label="CareCircle home"><span class="brand-mark"><img src="/family-circle-mark.svg" alt=""></span><span class="brand-name"><span class="brand-care">Care</span><span class="brand-circle">Circle</span></span></a>
+      <button class="circle-switch" type="button" id="profileButton" aria-label="Edit care recipient profile" title="Edit care recipient profile"><span class="circle-avatar" aria-hidden="true"><svg fill="none" stroke="currentColor" width="20" height="20" viewBox="0 0 24 24"><use href="#i-users"/></svg></span><span class="circle-label"><strong data-i18n="familyHealthCircle">Family Health Circle</strong><span><b id="familyMemberCount">5</b> <span data-i18n="membersSharedCare">members · shared care</span></span></span><svg class="chevron" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+      <div class="nav-label" data-i18n="workspace">Workspace</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="active" href="#view-today" data-view-link="today"><svg fill="none" stroke="currentColor"><use href="#i-grid"/></svg><span data-i18n="today">Today</span></a>
+        <a href="#view-tasks" data-view-link="tasks"><svg fill="none" stroke="currentColor"><use href="#i-checklist"/></svg><span data-i18n="tasks">Tasks</span><span class="nav-count" id="navTaskCount">5</span></a>
+        <a href="#view-schedule" data-view-link="schedule"><svg fill="none" stroke="currentColor"><use href="#i-calendar"/></svg><span data-i18n="schedule">Schedule</span></a>
+        <a href="#view-circle" data-view-link="circle"><svg fill="none" stroke="currentColor"><use href="#i-users"/></svg><span data-i18n="circle">Circle</span></a>
+        <a href="#view-settings" data-view-link="settings"><svg fill="none" stroke="currentColor"><use href="#i-settings"/></svg><span data-i18n="settings">Settings</span></a>
+      </nav>
+      <div class="sidebar-plus-banner" id="sidebarPlusBanner">
+        <div class="plus-banner-glow" aria-hidden="true"></div>
+        <div class="plus-banner-header">
+          <span class="plus-badge-tag">PLUS</span>
+          <span class="plus-banner-title">Supercharge Care</span>
+        </div>
+        <p class="plus-banner-sub">Insights, Streak Shield &amp; Unlimited Members</p>
+        <button class="plus-upgrade-btn" type="button" id="sidebarPlusBtn">TRY 14 DAYS FREE</button>
+      </div>
+    </aside>
+    <main id="overview">
+      <header class="topbar">
+        <span class="top-date" id="todayDate"></span>
+        <button class="streak-button" id="streakButton" type="button" aria-label="Health Streak!" title="Health Streak!" data-i18n-title="streakTitle">
+          <svg class="streak-mark" aria-hidden="true" viewBox="0 0 100 115"><use href="#i-streak"/></svg>
+        </button>
+        <button class="plus-topbar-button" id="topbarPlusButton" type="button" aria-label="CareCircle Plus upgrade" title="CareCircle Plus">
+          <svg class="plus-star-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span class="plus-topbar-text">PLUS</span>
+        </button>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-trigger-btn" id="langTriggerBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" title="Select language">
+            <span class="flag-badge" id="activeFlagBadge"></span>
+            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown" role="listbox" aria-label="Available languages" hidden>
+            <div class="lang-dropdown-header" data-i18n="languages">Languages</div>
+            <div class="lang-options-list" id="langOptionsList"></div>
+          </div>
+        </div>
+        <button class="icon-button" id="notificationButton" aria-label="View reminders" title="View reminders" data-i18n-title="viewReminders"><svg fill="none" stroke="currentColor"><use href="#i-bell"/></svg><span class="notification-dot"></span></button>
+        <button class="top-user" id="accountButton" type="button" aria-label="Edit your local profile" title="Edit your local profile" data-i18n-title="editLocalProfile">YOU</button>
+      </header>
+      <section class="page-heading">
+        <div><p class="eyebrow" id="pageEyebrow" data-i18n="yourFamilyCareInSync">Your family care, in sync</p><h1 id="pageTitle" class="page-title" data-i18n="todaysCare">Today's care</h1><p class="subtitle" id="pageSubtitle">A shared view of the little things that make a big difference.</p></div>
+        <div class="heading-actions"><button class="button" id="appointmentButton"><svg fill="none" stroke="currentColor"><use href="#i-calendar"/></svg><span data-i18n="addAppointment">Add appointment</span></button><button class="button primary" id="addTaskButton"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg><span data-i18n="newTask">New task</span></button></div>
+      </section>
+      <section class="daily-streak-bar" id="dailyStreakBar" aria-label="Daily Care Streak">
+        <div class="streak-left-badge">
+          <span class="streak-flame-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><use href="#i-streak"/></svg></span>
+          <span class="streak-badge-label" data-i18n="dailyCareStreak">DAILY CARE STREAK</span>
+        </div>
+        <div class="streak-nodes-stage">
+          <div class="streak-track-line" aria-hidden="true"></div>
+          <div class="streak-days-row">
+            <div class="streak-node completed" title="Monday: Complete">
+              <span class="node-circle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+              <span class="node-label" data-i18n="dayMon">Mon</span>
+            </div>
+            <div class="streak-node completed" title="Tuesday: Complete">
+              <span class="node-circle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+              <span class="node-label" data-i18n="dayTue">Tue</span>
+            </div>
+            <div class="streak-node completed" title="Wednesday: Complete">
+              <span class="node-circle"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><use href="#i-check"/></svg></span>
+              <span class="node-label" data-i18n="dayWed">Wed</span>
+            </div>
+            <div class="streak-node active-today" title="Thursday: Today">
+              <span class="node-circle"><span class="today-dot"></span></span>
+              <span class="node-label" data-i18n="dayThu">Thu</span>
+            </div>
+            <div class="streak-node future" title="Friday: Upcoming">
+              <span class="node-circle"></span>
+              <span class="node-label" data-i18n="dayFri">Fri</span>
+            </div>
+            <div class="streak-node future" title="Saturday: Upcoming">
+              <span class="node-circle"></span>
+              <span class="node-label" data-i18n="daySat">Sat</span>
+            </div>
+            <div class="streak-node future" title="Sunday: Upcoming">
+              <span class="node-circle"></span>
+              <span class="node-label" data-i18n="daySun">Sun</span>
+            </div>
+          </div>
+        </div>
+        <div class="streak-right-pill">
+          <span data-i18n="streakBadge">3-Day Streak!</span>
+        </div>
+      </section>
+      <section class="alert-hub quiet" id="alertHub" aria-live="polite">
+        <span class="alert-emblem" id="alertEmblem"></span>
+        <div class="alert-copy"><small id="alertLabel">Care alerts</small><strong id="alertHeadline">Checking today's care...</strong><p id="alertDetail"></p><div class="alert-stack" id="alertStack" aria-label="Warnings"></div></div>
+        <button class="alert-action" type="button" id="alertAction" data-i18n="openReminders">Open reminders</button>
+      </section>
+      <section class="summary-grid" id="summaryGrid" aria-label="Care summary">
+        <article class="summary-card summary-card-progress"><div class="summary-top"><span data-i18n="tasksCompleted">Tasks completed</span> <span class="summary-icon green"><svg fill="none" stroke="currentColor"><use href="#i-check"/></svg></span></div><div class="summary-progress-stage"><div class="duo-progress-container"><div class="duo-progress-track"><div class="duo-progress-fill" id="taskProgressBar" style="width: 60%"><span class="duo-progress-highlight" aria-hidden="true"></span></div><div class="duo-progress-text"><span id="completedCount">3</span>/<span id="totalCount">5</span></div></div></div><span class="summary-progress-sub" data-i18n="tasksFinishedToday">tasks finished today</span></div></article>
+        <article class="summary-card"><div class="summary-top"><span data-i18n="stillToDo">Still to do</span> <span class="summary-icon blue"><svg fill="none" stroke="currentColor"><use href="#i-clock"/></svg></span></div><div class="summary-value"><strong id="pendingCount" class="count-pill blue">2</strong><span data-i18n="onTodayList">on today's list</span></div></article>
+        <article class="summary-card"><div class="summary-top"><span data-i18n="overdue">Overdue</span> <span class="summary-icon red"><svg fill="none" stroke="currentColor"><use href="#i-alert"/></svg></span></div><div class="summary-value"><strong id="overdueCount" class="count-pill red">0</strong><span data-i18n="needsCheckIn">needs a check-in</span></div></article>
+        <article class="summary-card next"><div class="summary-top"><span data-i18n="nextAppointment">Next appointment</span> <span class="summary-icon blue"><svg fill="none" stroke="currentColor"><use href="#i-calendar"/></svg></span></div><div class="summary-value"><strong id="nextAppointment" class="count-pill muted">None planned</strong><span id="nextAppointmentSubtext" data-i18n="noFamilyAppointments">No family appointments added</span></div></article>
+      </section>
+      <div class="content-grid" id="contentGrid" data-view="today">
+        <div class="column">
+          <section class="panel" id="tasks" data-view-section="today tasks">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-checklist"/></svg><h2><span id="taskPanelHeading" data-i18n="todaysCare">Today's care</span> <small id="taskSubhead">Tuesday, October 3</small></h2></div><button class="text-link" id="taskLink" data-i18n="addTask">+ Add task</button></div>
+            <div class="task-filters" id="taskFilters" role="group" aria-label="Filter care tasks"><button class="task-filter" type="button" data-task-filter="all" aria-pressed="true" data-i18n="filterAll">All</button><button class="task-filter" type="button" data-task-filter="open" aria-pressed="false" data-i18n="filterOpen">Open</button><button class="task-filter" type="button" data-task-filter="overdue" aria-pressed="false" data-i18n="filterOverdue">Overdue</button><button class="task-filter" type="button" data-task-filter="done" aria-pressed="false" data-i18n="filterDone">Done</button></div>
+            <div class="task-list" id="taskList"></div>
+          </section>
+          <section class="panel" id="medications" data-view-section="schedule">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-pill"/></svg><h2><span data-i18n="medicationSchedule">Medication schedule</span> <small data-i18n="medicationSubtitle">Family logging only · follow prescribed instructions</small></h2></div><button class="text-link" id="medicationInfo" data-i18n="viewAll">View all</button></div>
+            <div class="med-list" id="medicationList"></div>
+          </section>
+          <section class="panel" id="appointments" data-view-section="today schedule">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-calendar"/></svg><h2 data-i18n="upcomingAppointments">Upcoming appointments</h2></div><button class="text-link" id="appointmentLink" data-i18n="add">+ Add</button></div>
+            <div class="appointment-list" id="appointmentList"></div>
+          </section>
+          <section class="panel history-panel" id="history" data-view-section="circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-history"/></svg><h2><span data-i18n="careHistory">Care history</span> <small data-i18n="historySubtitle">Recent check-ins from your circle</small></h2></div></div>
+            <div class="history-list" id="historyList"></div>
+          </section>
+          <section class="panel" id="family-feed-panel" data-view-section="today circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-heart"/></svg><h2><span data-i18n="familyWellbeingFeed">Family wellbeing feed</span> <small data-i18n="feedSubtitle">Small check-ins, shared across the circle</small></h2></div><span class="nav-count" data-i18n="today">Today</span></div>
+            <div class="family-feed" id="wellbeingFeed"></div>
+            <p class="circle-disclaimer" data-i18n="feedDisclaimer">Family-entered sample check-ins; no sensors or medical advice.</p>
+          </section>
+        </div>
+        <div class="column">
+          <section class="panel family-circle-panel" id="family-circle" data-view-section="circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-users"/></svg><h2><span data-i18n="familyHealthCircle">Family health circle</span> <small data-i18n="selectMemberCheckin">Select a member to see their check-in</small></h2></div><span class="nav-count"><span id="circleMemberCount">5</span> <span data-i18n="memberCount">members</span></span></div>
+            <div class="circle-legend" aria-label="Ring colors"><span><i class="legend-dot water"></i><span data-i18n="hydration">Hydration</span></span><span><i class="legend-dot activity"></i><span data-i18n="activity">Activity</span></span><span><i class="legend-dot vitals"></i><span data-i18n="vitalsLog">Vitals log</span></span><span><i class="legend-dot mood"></i><span data-i18n="mood">Mood</span></span></div>
+            <div class="orbit-stage" id="wellnessCircle" role="group" aria-label="Interactive family wellbeing circle">
+              <svg class="orbit-lines" id="orbitLines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 12 50 50M80 32 50 50M80 68 50 50M50 88 50 50M20 50 50 50"/></svg>
+              <div class="circle-core"><svg fill="none" stroke="currentColor" stroke-width="1.7"><use href="#i-heart"/></svg><strong data-i18n="careTogetherUpper">CARE TOGETHER</strong><small data-i18n="everyMemberMatters">Every member matters</small></div>
+              <div id="wellnessNodes"></div>
+            </div>
+            <div class="member-detail" id="memberDetail" aria-live="polite"></div>
+          </section>
+          <section class="panel" id="family-health-status" data-view-section="today circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-shield"/></svg><h2><span data-i18n="familyHealthStatus">Family health status</span> <small data-i18n="latestCategoryMedicalReport">Latest category from each medical report</small></h2></div><button class="button" type="button" id="addMedicalRecordButton"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg><span data-i18n="addRecord">Add record</span></button></div>
+            <div class="health-status-grid" id="healthStatusGroups"></div>
+            <div class="health-unrecorded" id="healthUnrecorded" hidden><strong data-i18n="noReportYet">No report yet</strong><div class="health-unrecorded-list" id="healthUnrecordedList"></div></div>
+            <p class="health-disclaimer" data-i18n="medicalDisclaimer">Categories are entered from the medical report or care team; CareCircle does not diagnose or calculate health status from readings. Follow the clinician’s interpretation.</p>
+          </section>
+          <section class="panel load-panel" id="care-load" data-view-section="circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-users"/></svg><h2><span data-i18n="careLoad">Care load</span> <small data-i18n="tasksAssignedToday">Tasks assigned today</small></h2></div><button class="text-link" id="balanceButton" data-i18n="balance">Balance</button></div>
+            <p class="load-note" data-i18n="loadNote">A shared view makes it easier to share the little things.</p>
+            <div class="load-list" id="loadList"></div>
+            <div class="load-footer"><svg fill="none" stroke="currentColor"><use href="#i-spark"/></svg><span id="loadMessage" data-i18n="loadFooter">A thoughtful team makes lighter work.</span></div>
+          </section>
+          <section class="panel" id="care-team" data-view-section="circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-users"/></svg><h2><span data-i18n="careTeam">Care team</span> <small data-i18n="teamSubtitle">Everyone in the wellbeing circle</small></h2></div><div class="heading-actions"><span class="nav-count" id="teamMemberCount">5 members</span><button class="button" type="button" id="addFamilyMemberButton"><svg fill="none" stroke="currentColor"><use href="#i-plus"/></svg><span data-i18n="addMember">Add member</span></button></div></div>
+            <div class="team-list" id="teamList"></div>
+          </section>
+          <section class="panel" id="family-chat-panel" data-view-section="circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-users"/></svg><h2><span data-i18n="familyChat">Family chat</span> <small data-i18n="chatSubtitle">Coordinate care with your circle</small></h2></div><span class="nav-count" id="chatMemberCount" data-i18n="inCircle">Local circle</span></div>
+            <p class="family-chat-note" data-i18n="chatNote">Messages are saved in this browser and shared on this device only.</p>
+            <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+            <form class="chat-form" id="chatForm"><input id="chatMessageInput" name="message" required maxlength="500" placeholder="Write a care update…" data-i18n-placeholder="chatPlaceholder" aria-label="Write a family message"><button class="button primary" type="submit" aria-label="Send message" title="Send message"><svg fill="none" stroke="currentColor"><use href="#i-send"/></svg></button></form>
+          </section>
+          <section class="panel emergency-panel" id="circle" data-view-section="circle">
+            <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-shield"/></svg><h2 data-i18n="importantInfo">Important information</h2></div><button class="text-link" id="editProfileLink" data-i18n="edit">Edit</button></div>
+            <div class="emergency-content" id="emergencyContent"></div>
+          </section>
+        </div>
+      </div>
+      <section class="panel settings-panel" id="settings" hidden>
+        <div class="panel-head"><div class="panel-title"><svg fill="none" stroke="currentColor"><use href="#i-settings"/></svg><h2><span data-i18n="settings">Settings</span> <small data-i18n="settingsSubtitle">Preferences for this device and browser</small></h2></div></div>
+        <div class="settings-grid">
+          <div class="setting-group">
+            <h3 data-i18n="appearance">Appearance</h3>
+            <p data-i18n="appearanceCopy">Choose how CareCircle looks on this device.</p>
+            <div class="theme-options" role="radiogroup" aria-label="Theme selection">
+              <button class="theme-option active" type="button" role="radio" aria-checked="true" data-theme-option="light">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                <span data-i18n="themeLight">Light</span>
+              </button>
+              <button class="theme-option" type="button" role="radio" aria-checked="false" data-theme-option="dark">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <span data-i18n="themeDark">Dark</span>
+              </button>
+            </div>
+          </div>
+          <div class="setting-group">
+            <h3 data-i18n="remindersTitle">In-app reminders</h3>
+            <p data-i18n="remindersCopy">Choose which reminders appear in the bell menu.</p>
+            <label class="setting-toggle"><span class="setting-toggle-copy"><strong data-i18n="remTasks">Care tasks</strong><small data-i18n="remTasksSub">Upcoming tasks assigned to your circle</small></span><input type="checkbox" data-reminder="tasks" checked><span class="toggle-track" aria-hidden="true"></span></label>
+            <label class="setting-toggle"><span class="setting-toggle-copy"><strong data-i18n="remOverdue">Overdue tasks</strong><small data-i18n="remOverdueSub">Tasks that are past their due time</small></span><input type="checkbox" data-reminder="overdue" checked><span class="toggle-track" aria-hidden="true"></span></label>
+            <label class="setting-toggle"><span class="setting-toggle-copy"><strong data-i18n="remMeds">Medication schedule</strong><small data-i18n="remMedsSub">Doses not yet logged as taken</small></span><input type="checkbox" data-reminder="medications" checked><span class="toggle-track" aria-hidden="true"></span></label>
+            <label class="setting-toggle"><span class="setting-toggle-copy"><strong data-i18n="remAppts">Appointments</strong><small data-i18n="remApptsSub">Your next scheduled visit</small></span><input type="checkbox" data-reminder="appointments" checked><span class="toggle-track" aria-hidden="true"></span></label>
+          </div>
+          <div class="setting-group settings-data wide">
+            <div><h3 data-i18n="careData">Care data</h3><p data-i18n="careDataCopy">CareCircle stores this circle on this browser only. Export a JSON backup of the current profile, schedule, and history.</p></div>
+            <button class="button" type="button" id="exportDataButton"><svg fill="none" stroke="currentColor"><use href="#i-download"/></svg><span data-i18n="exportData">Export data</span></button>
+          </div>
+        </div>
+      </section>
+      <p class="footnote" data-i18n="footnote">CareCircle helps families stay coordinated. It does not provide medical advice or emergency response.</p>
+    </main>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a class="active" href="#view-today" data-view-link="today">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-grid"/></svg>
+      <span data-i18n="today">Today</span>
+    </a>
+    <a href="#view-tasks" data-view-link="tasks">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-checklist"/></svg>
+      <span data-i18n="tasks">Tasks</span>
+    </a>
+    <a href="#view-schedule" data-view-link="schedule">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-calendar"/></svg>
+      <span data-i18n="schedule">Schedule</span>
+    </a>
+    <a href="#view-circle" data-view-link="circle">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-users"/></svg>
+      <span data-i18n="circle">Circle</span>
+    </a>
+    <a href="#view-settings" data-view-link="settings">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-settings"/></svg>
+      <span data-i18n="settings">Settings</span>
+    </a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="taskDialog"><form id="taskForm"><div class="dialog-head"><h2>Add a care task</h2><button class="icon-button" type="button" data-close="taskDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><div class="form-grid"><div class="field"><label for="taskTitle">Task</label><input id="taskTitle" name="title" required maxlength="80" placeholder="e.g. Prepare lunch"></div><div class="field"><label for="taskAssignee">Assign to</label><select id="taskAssignee" name="assignee"></select></div><div class="field"><label for="taskTime">Due time</label><input id="taskTime" name="time" type="time" value="12:00" required></div></div><div class="dialog-actions"><button class="button" type="button" data-close="taskDialog">Cancel</button><button class="button primary" type="submit">Add task</button></div></div></form></dialog>
+  <dialog id="appointmentDialog"><form id="appointmentForm"><div class="dialog-head"><h2>Add an appointment</h2><button class="icon-button" type="button" data-close="appointmentDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><div class="form-grid"><div class="field"><label for="appointmentTitle">Appointment</label><input id="appointmentTitle" name="title" required maxlength="80" placeholder="e.g. Follow-up visit"></div><div class="field"><label for="appointmentDate">Date</label><input id="appointmentDate" name="date" type="date" required></div><div class="field"><label for="appointmentTime">Time</label><input id="appointmentTime" name="time" type="time" value="10:00" required></div><div class="field"><label for="appointmentAssignee">Accompanied by</label><select id="appointmentAssignee" name="assignee"></select></div></div><div class="dialog-actions"><button class="button" type="button" data-close="appointmentDialog">Cancel</button><button class="button primary" type="submit">Add appointment</button></div></div></form></dialog>
+  <dialog id="profileDialog"><form id="profileForm"><div class="dialog-head"><h2>Care recipient profile</h2><button class="icon-button" type="button" data-close="profileDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><div class="form-grid"><div class="field"><label for="profileName">Name</label><input id="profileName" name="name" required maxlength="60"></div><div class="field"><label for="profileAge">Age</label><input id="profileAge" name="age" type="number" min="0" max="125"></div><div class="field"><label for="profileContact">Emergency contact</label><input id="profileContact" name="contact" required maxlength="60"></div><div class="field"><label for="profilePhone">Contact number</label><input id="profilePhone" name="phone" type="tel" maxlength="30"></div><div class="field"><label for="profileAllergies">Allergies</label><input id="profileAllergies" name="allergies" maxlength="120" placeholder="None known"></div><div class="field"><label for="profileNotes">Important notes & preferences</label><textarea id="profileNotes" name="notes" maxlength="300"></textarea></div></div><div class="dialog-actions"><button class="button" type="button" data-close="profileDialog">Cancel</button><button class="button primary" type="submit">Save profile</button></div></div></form></dialog>
+  <dialog id="accountDialog" class="auth-card-dialog"><form id="accountForm"><div class="auth-card-head"><h2 id="accountDialogTitle">Create your local account</h2><button class="icon-button" type="button" id="accountCloseButton" data-close="accountDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body auth-card-body"><p class="subtitle" id="accountDialogCopy">Choose how your family will see you and protect this browser profile with a password.</p><div class="form-grid"><div class="field"><label for="accountNameInput">Your name</label><input id="accountNameInput" name="displayName" required maxlength="40" autocomplete="name" placeholder="e.g. Alex"></div><div class="field" id="signupPasswordField"><label for="accountPasswordInput">Password</label><input id="accountPasswordInput" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></div><div class="field" id="signupConfirmField"><label for="accountPasswordConfirm">Confirm password</label><input id="accountPasswordConfirm" name="confirmPassword" type="password" minlength="8" autocomplete="new-password"></div></div><div id="signupTerms" class="auth-terms-box"><label class="terms-check"><input id="accountTerms" name="terms" type="checkbox" required><span>I agree to the <button class="inline-terms-btn" type="button" data-open-terms>Terms &amp; Conditions</button></span></label></div><p class="auth-error" id="accountError" role="alert"></p><p class="setting-group-copy auth-local-note">The password verifier and care data stay in this browser. This is a local lock, not cross-device sync.</p><div class="dialog-actions"><button class="button" type="button" id="accountDismissButton" data-close="accountDialog">Cancel</button><button class="button" type="button" id="lockAccountButton" hidden>Lock account</button><button class="button primary" type="submit" id="accountSaveButton">Create account</button></div></div></form></dialog>
+  <dialog id="loginDialog" class="auth-card-dialog"><form id="loginForm"><div class="auth-card-header"><h2 class="auth-title">Sign in</h2><p class="auth-subtitle">Welcome back, <strong id="loginDisplayName"></strong></p></div><div class="dialog-body auth-card-body"><div class="field"><label for="loginPasswordInput">Password</label><input id="loginPasswordInput" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></div><div class="auth-terms-box"><label class="terms-check"><input id="loginTerms" name="terms" type="checkbox" required><span>I agree to the <button class="inline-terms-btn" type="button" data-open-terms>Terms &amp; Conditions</button></span></label></div><p class="auth-error" id="loginError" role="alert"></p><button class="button primary auth-submit-btn" type="submit">Sign in</button><p class="setting-group-copy auth-local-note">This profile is stored in this browser only. It does not sync between devices.</p></div></form></dialog>
+  <dialog id="termsDialog" class="terms-dialog"><div class="dialog-head"><h2>Terms &amp; Conditions</h2><button class="icon-button" type="button" data-close="termsDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body terms-copy"><p>CareCircle is a family coordination tool. By continuing, you agree to use it for lawful, respectful care coordination.</p><h3>Health information</h3><p>CareCircle is not a medical device and does not diagnose, monitor, or recommend treatment. Health categories are entered by family members from a report or care-team guidance. For medical concerns, contact a qualified clinician; for emergencies, contact local emergency services.</p><h3>Local storage and account</h3><p>This MVP stores the profile, password verifier, and care records in this browser on this device. There is no server, encrypted cloud backup, or account recovery. Anyone with access to this browser profile or its local data may be able to access the records. Do not use this local lock as protection for highly sensitive information.</p><h3>Family sharing and responsibility</h3><p>Only enter information you are authorized to share with your family. Keep entries accurate, review source reports, and do not rely on CareCircle as the sole record for medication, appointments, or clinical decisions.</p><div class="dialog-actions"><button class="button primary" type="button" data-close="termsDialog">Done</button></div></div></dialog>
+  <dialog id="familyMemberDialog"><form id="familyMemberForm"><div class="dialog-head"><h2>Add a family member</h2><button class="icon-button" type="button" data-close="familyMemberDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><div class="form-grid"><div class="field"><label for="familyMemberNameInput">Name</label><input id="familyMemberNameInput" name="name" required maxlength="40" placeholder="e.g. Sam"></div><div class="field"><label for="familyMemberRoleInput">Role in the circle</label><select id="familyMemberRoleInput" name="role"><option>Caregiver</option><option>Family member</option></select></div></div><p class="setting-group-copy">New members can be assigned tasks, added to chat, and have their own wellbeing and medical records.</p><div class="dialog-actions"><button class="button" type="button" data-close="familyMemberDialog">Cancel</button><button class="button primary" type="submit">Add member</button></div></div></form></dialog>
+  <dialog id="removeMemberDialog"><div class="dialog-head"><h2>Remove family member?</h2><button class="icon-button" type="button" data-close="removeMemberDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><p id="removeMemberCopy" class="subtitle"></p><p class="setting-group-copy">Their local medical records, check-ins, and chat messages will be deleted. Open tasks and appointments will be reassigned to you. The care-recipient profile is kept.</p><div class="dialog-actions"><button class="button" type="button" data-close="removeMemberDialog">Cancel</button><button class="button danger" type="button" id="confirmRemoveMember">Remove member</button></div></div></dialog>
+  <dialog id="notificationDialog"><div class="dialog-head"><h2>Circle reminders</h2><button class="icon-button" type="button" data-close="notificationDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body" id="notificationContent"></div></dialog>
+  <dialog id="streakDialog" class="streak-dialog" aria-labelledby="streakTitle"><div class="dialog-head"><h2 id="streakTitle">Health Streak!</h2><button class="icon-button" type="button" data-close="streakDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body streak-body"><div class="streak-hero-row" aria-hidden="true"><div class="streak-flame-stage"><div class="flame-hero"><svg><use href="#i-streak"/></svg></div><span class="flame-spark sp1"></span><span class="flame-spark sp2"></span><span class="flame-spark sp3"></span><span class="flame-spark sp4"></span><span class="flame-spark sp5"></span></div><div class="streak-hero-info"><p class="streak-days" id="streakDayCount">0<span id="streakDayLabel">days in a row</span></p></div></div><p class="subtitle streak-note" id="streakNote"></p><button class="button primary" type="button" id="streakLogButton">Log today's check-in</button></div></dialog>
+  <dialog id="wellnessDialog"><form id="wellnessForm"><div class="dialog-head"><h2 id="wellnessDialogTitle">Log a wellbeing check-in</h2><button class="icon-button" type="button" data-close="wellnessDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><p class="subtitle">Family-entered check-in only. This does not measure or assess medical conditions.</p><div class="form-grid"><div class="field"><label for="wellnessHydration">Glasses of water today</label><input id="wellnessHydration" name="hydration" type="number" min="0" max="20" required></div><div class="field"><label for="wellnessActivity">Movement today (minutes)</label><input id="wellnessActivity" name="activity" type="number" min="0" max="600" required></div><div class="field"><label for="wellnessVitals">Vitals log</label><select id="wellnessVitals" name="vitals"><option value="false">Not logged</option><option value="true">Logged by family</option></select></div><div class="field"><label for="wellnessMood">How are they feeling?</label><select id="wellnessMood" name="mood"><option>Great</option><option>Good</option><option>Steady</option><option>Tired</option><option>Low</option></select></div></div><div class="dialog-actions"><button class="button" type="button" data-close="wellnessDialog">Cancel</button><button class="button primary" type="submit">Save check-in</button></div></div></form></dialog>
+  <dialog id="medicalRecordDialog"><form id="medicalRecordForm"><div class="dialog-head"><h2>Add a medical record</h2><button class="icon-button" type="button" data-close="medicalRecordDialog" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="dialog-body"><p class="subtitle">Enter values as written in the report. CareCircle does not interpret results.</p><div class="form-grid"><div class="field"><label for="recordMember">Family member</label><select id="recordMember" name="memberId" required></select></div><div class="field"><label for="recordDate">Report date</label><input id="recordDate" name="date" type="date" required></div><div class="field-pair"><div class="field"><label for="recordSystolic">Systolic BP · mmHg</label><input id="recordSystolic" name="systolic" type="number" min="0" max="400" step="1" placeholder="Optional"></div><div class="field"><label for="recordDiastolic">Diastolic BP · mmHg</label><input id="recordDiastolic" name="diastolic" type="number" min="0" max="300" step="1" placeholder="Optional"></div></div><div class="field-pair"><div class="field"><label for="recordGlucose">Blood sugar</label><input id="recordGlucose" name="glucose" type="number" min="0" step="any" placeholder="Optional"></div><div class="field"><label for="recordGlucoseUnit">Glucose unit</label><select id="recordGlucoseUnit" name="glucoseUnit"><option>mg/dL</option><option>mmol/L</option></select></div></div><div class="field-pair"><div class="field"><label for="recordHemoglobin">Hemoglobin</label><input id="recordHemoglobin" name="hemoglobin" type="number" min="0" step="any" placeholder="Optional"></div><div class="field"><label for="recordHemoglobinUnit">Hemoglobin unit</label><select id="recordHemoglobinUnit" name="hemoglobinUnit"><option>g/dL</option><option>g/L</option></select></div></div><div class="field"><label for="recordCategory">Category stated in report or by care team</label><select id="recordCategory" name="category" required><option value="at-risk">At risk</option><option value="unhealthy">Unhealthy</option><option value="healthy">Healthy</option><option value="good-health">Good health</option></select></div><div class="field"><label for="recordNotes">Report notes (optional)</label><textarea id="recordNotes" name="notes" maxlength="300" placeholder="Optional context from the report"></textarea></div></div><div class="dialog-actions"><button class="button" type="button" data-close="medicalRecordDialog">Cancel</button><button class="button primary" type="submit">Save record</button></div></div></form></dialog>
+
+  <!-- CareCircle Plus Paywall & Feature Dashboard Dialog -->
+  <dialog id="plusPaywallDialog" class="plus-paywall-dialog" aria-labelledby="plusMainTitle">
+    <div class="plus-modal-wrapper">
+      <!-- CareCircle Plus Holographic Space Header -->
+      <div class="plus-hero-banner">
+        <button class="plus-close-btn" type="button" data-close="plusPaywallDialog" aria-label="Close CareCircle Plus paywall">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="plus-hero-ambient" aria-hidden="true">
+          <span class="ambient-glow cyan"></span>
+          <span class="ambient-glow violet"></span>
+          <span class="ambient-glow green"></span>
+        </div>
+        <div class="plus-hero-content">
+          <div class="plus-hologram-pill">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>SUPERCHARGED HEALTH VIBE</span>
+          </div>
+          <h2 class="plus-main-title" id="plusMainTitle">CareCircle <span class="plus-neon-word">PLUS</span></h2>
+          <p class="plus-main-subtitle">Supercharge your family's daily health with playful, high-powered tools and complete peace of mind.</p>
+        </div>
+      </div>
+
+      <!-- Active Membership Status Bar (toggles when subscribed) -->
+      <div class="plus-active-status-bar" id="plusActiveStatusBar" hidden>
+        <div class="plus-active-indicator">
+          <span class="pulse-dot"></span>
+          <div>
+            <strong id="plusStatusText">PLUS ACTIVE · 14-Day Free Trial</strong>
+            <small id="plusStatusSub">All 5 Super Perks are unlocked for your family circle</small>
+          </div>
+        </div>
+        <button class="plus-manage-btn" type="button" id="plusManageBtn">Manage Subscription</button>
+      </div>
+
+      <div class="plus-dialog-body">
+        <!-- Section: Circle Plus Perks -->
+        <div class="plus-section-header">
+          <span class="plus-section-badge">CIRCLE PLUS PERKS</span>
+          <h3>Unlock the Full Supercharged Suite</h3>
+          <p>Designed for busy families who need deeper insights, zero limits, and proactive backup.</p>
+        </div>
+
+        <div class="plus-perks-grid">
+          <!-- Perk 1: Supercharged Family Insights -->
+          <article class="plus-perk-card perk-insights">
+            <div class="perk-card-top">
+              <span class="perk-icon-tile cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+              </span>
+              <div class="perk-headings">
+                <h4>Supercharged Family Insights</h4>
+                <span class="perk-tag cyan-tag">Interactive Analytics</span>
+              </div>
+            </div>
+            <p class="perk-desc">Deep interactive visualizations (chunky pill bar charts, thick donut charts, and trend line trackers) for vitals, medication adherence, and doctor visit records.</p>
+            
+            <!-- Live Interactive Chart Preview Component -->
+            <div class="plus-interactive-preview">
+              <div class="preview-tabs" role="tablist" aria-label="Interactive Insights Preview">
+                <button type="button" class="preview-tab active" data-chart-tab="adherence" role="tab" aria-selected="true">Adherence Bar</button>
+                <button type="button" class="preview-tab" data-chart-tab="vitals" role="tab" aria-selected="false">Vitals Donut</button>
+                <button type="button" class="preview-tab" data-chart-tab="trends" role="tab" aria-selected="false">BP Tracker</button>
+              </div>
+
+              <!-- 1. Adherence Chunky Pill Bar Chart -->
+              <div class="preview-chart-pane" id="chartAdherence" role="tabpanel">
+                <div class="chart-header-row">
+                  <span class="chart-meta-label">7-Day Care &amp; Medication Adherence</span>
+                  <strong class="chart-stat-accent text-green">96% On-Track</strong>
+                </div>
+                <div class="chunky-bars-stage" aria-label="Weekly adherence bar chart">
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill green" style="height: 100%;" title="Mon: 100%"></div><span>M</span></div>
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill green" style="height: 100%;" title="Tue: 100%"></div><span>T</span></div>
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill green" style="height: 85%;" title="Wed: 85%"></div><span>W</span></div>
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill cyan" style="height: 100%;" title="Thu: 100%"></div><span>T</span></div>
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill green" style="height: 100%;" title="Fri: 100%"></div><span>F</span></div>
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill gold" style="height: 90%;" title="Sat: 90%"></div><span>S</span></div>
+                  <div class="chunky-bar-col"><div class="chunky-bar-fill green" style="height: 100%;" title="Sun: 100%"></div><span>S</span></div>
+                </div>
+              </div>
+
+              <!-- 2. Vitals Thick Donut Chart -->
+              <div class="preview-chart-pane" id="chartVitals" role="tabpanel" hidden>
+                <div class="donut-chart-row">
+                  <div class="donut-svg-wrapper">
+                    <svg viewBox="0 0 100 100" class="thick-donut-svg" aria-label="Health balance breakdown donut chart">
+                      <circle cx="50" cy="50" r="36" stroke="#1d2638" stroke-width="15" fill="none"/>
+                      <circle cx="50" cy="50" r="36" stroke="#1CB0F6" stroke-width="15" stroke-dasharray="79 147" stroke-dashoffset="0" fill="none"/>
+                      <circle cx="50" cy="50" r="36" stroke="#58CC02" stroke-width="15" stroke-dasharray="57 169" stroke-dashoffset="-79" fill="none"/>
+                      <circle cx="50" cy="50" r="36" stroke="#FFC800" stroke-width="15" stroke-dasharray="50 176" stroke-dashoffset="-136" fill="none"/>
+                      <circle cx="50" cy="50" r="36" stroke="#CE82FF" stroke-width="15" stroke-dasharray="40 186" stroke-dashoffset="-186" fill="none"/>
+                    </svg>
+                    <div class="donut-center-label">
+                      <strong>100%</strong>
+                      <span>Health Sync</span>
+                    </div>
+                  </div>
+                  <div class="donut-legend">
+                    <div class="legend-item"><span class="legend-color cyan"></span><span>Vitals Log (35%)</span></div>
+                    <div class="legend-item"><span class="legend-color green"></span><span>Hydration (25%)</span></div>
+                    <div class="legend-item"><span class="legend-color gold"></span><span>Activity (22%)</span></div>
+                    <div class="legend-item"><span class="legend-color violet"></span><span>Mood Check (18%)</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. BP Trend Line Tracker -->
+              <div class="preview-chart-pane" id="chartTrends" role="tabpanel" hidden>
+                <div class="chart-header-row">
+                  <span class="chart-meta-label">14-Day Blood Pressure Systolic Trend</span>
+                  <strong class="chart-stat-accent text-cyan">Optimal: 118 mmHg</strong>
+                </div>
+                <div class="trend-spark-container">
+                  <svg viewBox="0 0 320 64" class="trend-sparkline" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="trendGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#1CB0F6" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#1CB0F6" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M 0 50 Q 40 32 80 40 T 160 24 T 240 30 T 320 16 L 320 64 L 0 64 Z" fill="url(#trendGradient)"/>
+                    <path d="M 0 50 Q 40 32 80 40 T 160 24 T 240 30 T 320 16" fill="none" stroke="#1CB0F6" stroke-width="3.5" stroke-linecap="round"/>
+                    <circle cx="80" cy="40" r="4.5" fill="#1CB0F6"/>
+                    <circle cx="160" cy="24" r="5" fill="#58CC02"/>
+                    <circle cx="240" cy="30" r="4.5" fill="#1CB0F6"/>
+                    <circle cx="320" cy="16" r="5.5" fill="#FFC800" stroke="#131F24" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Perk 2: Care Streak Shield -->
+          <article class="plus-perk-card perk-shield">
+            <div class="perk-card-top">
+              <span class="perk-icon-tile violet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><use href="#i-shield-star"/></svg>
+              </span>
+              <div class="perk-headings">
+                <h4>Care Streak Shield</h4>
+                <span class="perk-tag violet-tag">Streak Freeze Tech</span>
+              </div>
+            </div>
+            <p class="perk-desc">Protects the family care streak if an unexpected emergency or busy day causes a missed log. Never lose your hard-earned progress.</p>
+            <div class="perk-status-pill shield-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg>
+              <span>1 Free Streak Shield automatically replenished every Monday</span>
+            </div>
+          </article>
+
+          <!-- Perk 3: Unlimited Care Circle Members -->
+          <article class="plus-perk-card perk-members">
+            <div class="perk-card-top">
+              <span class="perk-icon-tile green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/><line x1="19" y1="11" x2="19" y2="17"/><line x1="16" y1="14" x2="22" y2="14"/></svg>
+              </span>
+              <div class="perk-headings">
+                <h4>Unlimited Care Circle Members</h4>
+                <span class="perk-tag green-tag">Zero Capacity Cap</span>
+              </div>
+            </div>
+            <p class="perk-desc">Add extended family, daytime caregivers, babysitters, nurses, and clinical specialists without the standard 5-member limit.</p>
+          </article>
+
+          <!-- Perk 4: Doctor-Ready Export -->
+          <article class="plus-perk-card perk-export">
+            <div class="perk-card-top">
+              <span class="perk-icon-tile gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </span>
+              <div class="perk-headings">
+                <h4>Doctor-Ready Export</h4>
+                <span class="perk-tag gold-tag">1-Click Tactile PDF</span>
+              </div>
+            </div>
+            <p class="perk-desc">Instant printable tactile PDF report generator aggregating all vitals, medication logs, caregiver notes, and health warnings for your clinician visit.</p>
+            <button class="chunky-micro-btn" type="button" id="previewDoctorExportBtn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-download"/></svg>
+              <span>Download Doctor PDF Report</span>
+            </button>
+          </article>
+
+          <!-- Perk 5: Priority Care Alerts -->
+          <article class="plus-perk-card perk-alerts">
+            <div class="perk-card-top">
+              <span class="perk-icon-tile red-neon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </span>
+              <div class="perk-headings">
+                <h4>Priority Care Alerts</h4>
+                <span class="perk-tag red-tag">Immediate Bypass</span>
+              </div>
+            </div>
+            <p class="perk-desc">Instant SMS/push bypass for missed time-critical medications and urgent warnings, notifying the entire family squad simultaneously.</p>
+          </article>
+        </div>
+
+        <!-- Section: Subscription Tier Selector (Interactive Chunky Cards) -->
+        <div class="plus-tier-section">
+          <div class="plus-section-header">
+            <span class="plus-section-badge gold">PLANS</span>
+            <h3>Select Your Care Plan</h3>
+            <p>14-day free trial included on all plans. Cancel anytime before your trial ends with zero charge.</p>
+          </div>
+
+          <div class="plus-tiers-grid" role="radiogroup" aria-label="CareCircle Plus Subscription Plans">
+            <!-- 12 Months (Family Plan) - BEST VALUE -->
+            <button type="button" class="tier-card tier-12-months selected" data-tier="12" role="radio" aria-checked="true">
+              <div class="best-value-ribbon">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span>BEST VALUE</span>
+              </div>
+              <div class="tier-card-header">
+                <div class="tier-radio-circle"><span class="radio-inner"></span></div>
+                <div class="tier-name-wrap">
+                  <strong class="tier-title">12 Months (Family Plan)</strong>
+                  <span class="tier-billing-note">Billed annually at $95.88/year</span>
+                </div>
+              </div>
+              <div class="tier-pricing-wrap">
+                <div class="tier-price-main"><span class="currency">$</span><span class="amount">7.99</span><span class="period">/ mo</span></div>
+                <span class="tier-discount-badge">SAVE 40%</span>
+              </div>
+            </button>
+
+            <!-- 1 Month Option -->
+            <button type="button" class="tier-card tier-1-month" data-tier="1" role="radio" aria-checked="false">
+              <div class="tier-card-header">
+                <div class="tier-radio-circle"><span class="radio-inner"></span></div>
+                <div class="tier-name-wrap">
+                  <strong class="tier-title">1 Month</strong>
+                  <span class="tier-billing-note">Billed monthly, cancel whenever</span>
+                </div>
+              </div>
+              <div class="tier-pricing-wrap">
+                <div class="tier-price-main"><span class="currency">$</span><span class="amount">12.99</span><span class="period">/ mo</span></div>
+                <span class="tier-standard-label">Standard</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Primary CTA Button (Tactile 5px bottom rim, translate-y-[2px] on click) -->
+          <button class="plus-primary-cta-btn" id="startTrialBtn" type="button">
+            <span class="cta-glow-effect" aria-hidden="true"></span>
+            <span class="cta-label">START 14-DAY FREE TRIAL</span>
+          </button>
+
+          <!-- Footnote -->
+          <p class="plus-footnote">No commitment, cancel anytime in Settings</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 1 Re Trial Verification & Payment Dialog -->
+  <dialog id="fonepayDialog" class="plus-paywall-dialog fonepay-dialog" aria-labelledby="fonepayTitle">
+    <div class="plus-modal-wrapper fonepay-wrapper">
+      <div class="fonepay-header">
+        <button class="plus-close-btn" type="button" data-close="fonepayDialog" aria-label="Close payment verification">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="fonepay-badge-row">
+          <span class="fonepay-brand-pill">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z"/></svg>
+            TRIAL VERIFICATION
+          </span>
+          <span class="trial-micro-tag">14-DAY TRIAL</span>
+        </div>
+        <h2 id="fonepayTitle" class="fonepay-title">Confirm 14-Day Trial Membership</h2>
+        <p class="fonepay-subtitle">A nominal verification fee of <strong>Re 1.00</strong> confirms your subscription request and immediately activates your 14-day free trial.</p>
+      </div>
+
+      <div class="fonepay-body">
+        <!-- Verification Summary Card -->
+        <div class="fonepay-verification-card">
+          <div class="verification-amount-row">
+            <div class="verif-amount-chip">
+              <span class="verif-label">TRIAL VERIFICATION FEE</span>
+              <div class="verif-price"><span class="currency">Re</span> <span class="val">1.00</span> <small>(NPR)</small></div>
+            </div>
+            <div class="verif-duration-chip">
+              <span class="verif-label">DURATION</span>
+              <span class="verif-val-bold">14 Days Free</span>
+            </div>
+          </div>
+          <div class="verif-details-list">
+            <div class="verif-detail-item">
+              <span class="detail-label">Beneficiary / Merchant:</span>
+              <strong class="detail-val">KESHAB RAJ CHHETRI</strong>
+            </div>
+            <div class="verif-detail-item">
+              <span class="detail-label">Payment Mode:</span>
+              <span class="detail-val">Digital Banking / Wallets (eSewa, Khalti, IME Pay, connectIPS, Mobile Banking)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification Form -->
+        <form id="fonepayForm" class="fonepay-form">
+          <div class="fonepay-inputs-grid">
+            <div class="fonepay-field">
+              <label for="fpFullName">Full Name <span class="req">*</span></label>
+              <input id="fpFullName" name="fullName" required maxlength="60" placeholder="e.g. Sujan Sharma" autocomplete="name">
+            </div>
+
+            <div class="fonepay-field">
+              <label for="fpPhone">Phone Number <span class="req">*</span></label>
+              <input id="fpPhone" name="phone" type="tel" required maxlength="15" placeholder="e.g. 9841234567" autocomplete="tel">
+            </div>
+
+            <div class="fonepay-field">
+              <label for="fpRemindOption">When to Remind for Payment</label>
+              <select id="fpRemindOption" name="remindOption" class="chunky-select">
+                <option value="2_days_before">2 days before trial ends (Day 12)</option>
+                <option value="3_days_before">3 days before trial ends (Day 11)</option>
+                <option value="1_day_before">1 day before trial ends (Day 13)</option>
+                <option value="on_expiry">On the trial expiration day (Day 14)</option>
+                <option value="weekly">Weekly reminder</option>
+              </select>
+            </div>
+
+            <div class="fonepay-field">
+              <label for="fpTxnId">Payment Transaction ID / Reference (Optional)</label>
+              <input id="fpTxnId" name="txnId" maxlength="30" placeholder="e.g. TXN-9812401">
+            </div>
+          </div>
+
+          <div class="fonepay-notice-box">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span>Once submitted, your 14-day CareCircle Plus trial is instantly activated with all premium features unlocked.</span>
+          </div>
+
+          <button class="plus-primary-cta-btn fonepay-submit-btn" type="submit">
+            <span class="cta-glow-effect" aria-hidden="true"></span>
+            <span class="cta-label">CONFIRM 1 RE PAYMENT &amp; START TRIAL</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

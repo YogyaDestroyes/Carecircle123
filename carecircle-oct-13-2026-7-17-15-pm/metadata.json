@@ -1,0 +1,6 @@
+{
+  "name": "CareCircle",
+  "description": "A shared family care circle to coordinate daily care tasks, medications, medical records, and wellbeing check-ins together.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

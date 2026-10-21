@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <rect width="44" height="44" rx="15" fill="#fcf9f6"/>
+  <circle cx="22" cy="22" r="16" fill="none" stroke="#5c7866" stroke-width="2.2" stroke-dasharray="3 3" opacity="0.35"/>
+  <!-- Interconnected family care circles -->
+  <circle cx="22" cy="14" r="5" fill="#5c7866" opacity="0.9"/>
+  <circle cx="15" cy="26" r="4.5" fill="#6a8eb3" opacity="0.9"/>
+  <circle cx="29" cy="26" r="4.5" fill="#e2a267" opacity="0.9"/>
+  <!-- Connecting bridge -->
+  <path d="M19 16 C 16 19, 16 23, 17 25" stroke="#5c7866" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M25 16 C 28 19, 28 23, 27 25" stroke="#6a8eb3" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M17 27 C 20 29, 24 29, 27 27" stroke="#e2a267" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <circle cx="22" cy="22" r="2.2" fill="#5c7866"/>
+</svg>
